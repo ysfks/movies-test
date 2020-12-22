@@ -7,7 +7,8 @@ class Movies
 
     const MOVIES_DATASET = __DIR__ . '/../public/movies-in-theaters.json';
     private static $instance = null;
-    private $moviesDataSet = [];
+    private $moviesDataSet = [], $result = [];
+
 
     public function __construct()
     {
@@ -30,7 +31,7 @@ class Movies
 
     public function all()
     {
-        return json_encode($this->moviesDataSet);
+        return $this->format($this->moviesDataSet)->getResult();
     }
 
     public function recommended()
@@ -39,7 +40,7 @@ class Movies
             return $this->moviesDataSet[$k]['imdbRating'] > 7.0;
         }, ARRAY_FILTER_USE_KEY);
 
-        return $this->format($data);
+        return $this->format($data)->getResult();
     }
 
     public function search($title)
@@ -48,7 +49,7 @@ class Movies
             return preg_match('/' . $title . '/i', $this->moviesDataSet[$k]['title']);
         }, ARRAY_FILTER_USE_KEY);
 
-        return $this->format($data);
+        return $this->format($data)->json();
     }
 
     public function filterByGenre($genre)
@@ -57,12 +58,12 @@ class Movies
             return in_array($genre, $this->moviesDataSet[$k]['genres']);
         }, ARRAY_FILTER_USE_KEY);
 
-        return $this->format($data);
+        return $this->format($data)->json();
     }
 
     private function format($array)
     {
-        return json_encode(array_map(function ($array) {
+        $this->result = array_map(function ($array) {
             return [
                 'title' => $array['title'],
                 'imdbRating' => $array['imdbRating'],
@@ -70,6 +71,18 @@ class Movies
                 'posterUrl' => $array['posterurl'],
                 'year' => $array['year']
             ];
-        }, $array));
+        }, $array);
+
+        return $this;
+    }
+
+    private function getResult()
+    {
+        return $this->result;
+    }
+
+    private function json()
+    {
+        return json_encode($this->result);
     }
 }

@@ -7,9 +7,11 @@ session_start();
 
 // Load Composer Autoload
 require('../vendor/autoload.php');
+require('../bootstrap/app.php');
 
-// Load dotenv
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    $allMovies = $movies->all();
+    $recommendedMovies = $movies->recommended();
 
-//echo \App\Data\Movies::getInstance()->filterByGenre('Comedy');
+    view('home', compact('allMovies', 'recommendedMovies'));
+}
