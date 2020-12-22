@@ -29,6 +29,20 @@
             <input onkeyup="search(this)" type="text" class="form-control" placeholder="Title" aria-describedby="basic-addon1"/>
         </div>
     </div>
+    <div class="container">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Filter By Gender</span>
+            <select onchange="filter(this)" class="form-control">
+                <option value="">-</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Animation">Animation</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Crime">Crime</option>
+            </select>
+        </div>
+    </div>
     <div class="col-md-3">
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#all" aria-controls="all" role="tab"
@@ -41,8 +55,10 @@
                 <ul id="sortable1" class="list-group droptrue">
                     <?php foreach ($allMovies as $movie): ?>
                         <li class="list-group-item">
-                            <?php echo $movie['title']; ?>
+                            <a data-toggle="tooltip" title='<img src="<?php echo $movie['posterUrl'] ?>" />'>
+                            <span id="title"><?php echo $movie['title']; ?></span>
                             (<?php echo $movie['imdbRating']; ?> <i class="glyphicon glyphicon-star-empty"></i>)
+                            </a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -51,8 +67,10 @@
                 <ul id="sortable2" class="list-group droptrue">
                     <?php foreach ($recommendedMovies as $recommended): ?>
                         <li class="list-group-item">
-                            <?php echo $recommended['title']; ?>
+                            <a data-toggle="tooltip" title='<img src="<?php echo $recommended['posterUrl'] ?>" />'>
+                            <span id="title"><?php echo $recommended['title']; ?></span>
                             (<?php echo $recommended['imdbRating']; ?> <i class="glyphicon glyphicon-star-empty"></i>)
+                            </a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -64,43 +82,43 @@
         <div class="container">
             <div class="col-md-2">
                 <h4>Monday</h4>
-                <ul id="sortable3" class="list-group droptrue">
+                <ul id="sortable3" class="list-group droptrue" data-index="0">
                     <li class="list-group-item"></li>
                 </ul>
             </div>
             <div class="col-md-1">
                 <h4>Tuesday</h4>
-                <ul id="sortable3" class="list-group droptrue">
+                <ul id="sortable3" class="list-group droptrue" data-index="1">
                     <li class="list-group-item"></li>
                 </ul>
             </div>
             <div class="col-md-2">
                 <h4>Wednesday</h4>
-                <ul id="sortable3" class="list-group droptrue">
+                <ul id="sortable3" class="list-group droptrue" data-index="2">
                     <li class="list-group-item"></li>
                 </ul>
             </div>
             <div class="col-md-1">
                 <h4>Thursday</h4>
-                <ul id="sortable3" class="list-group droptrue">
+                <ul id="sortable3" class="list-group droptrue" data-index="3">
                     <li class="list-group-item"></li>
                 </ul>
             </div>
             <div class="col-md-2">
                 <h4>Friday</h4>
-                <ul id="sortable3" class="list-group droptrue">
+                <ul id="sortable3" class="list-group droptrue" data-index="4">
                     <li class="list-group-item"></li>
                 </ul>
             </div>
             <div class="col-md-1">
                 <h4>Saturday</h4>
-                <ul id="sortable3" class="list-group droptrue">
+                <ul id="sortable3" class="list-group droptrue" data-index="5">
                     <li class="list-group-item"></li>
                 </ul>
             </div>
             <div class="col-md-1">
                 <h4>Sunday</h4>
-                <ul id="sortable3" class="list-group droptrue">
+                <ul id="sortable3" class="list-group droptrue" data-index="6">
                     <li class="list-group-item"></li>
                 </ul>
             </div>
