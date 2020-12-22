@@ -29,8 +29,12 @@ class Movies
         $this->moviesDataSet = json_decode(file_get_contents(self::MOVIES_DATASET), true);
     }
 
-    public function all()
+    public function all($json = false)
     {
+        if ($json) {
+            return $this->format($this->moviesDataSet)->json();
+        }
+
         return $this->format($this->moviesDataSet)->getResult();
     }
 
