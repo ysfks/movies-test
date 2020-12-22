@@ -9,11 +9,21 @@ session_start();
 require('../vendor/autoload.php');
 require('../bootstrap/app.php');
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    $allMovies = $movies->all();
-    $recommendedMovies = $movies->recommended();
+$watchList = [];
+if(isset($_COOKIE['watchList'])) {
+    $watchList = json_decode($_COOKIE['watchList'], true);
+}
 
-    view('home', compact('allMovies', 'recommendedMovies'));
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    if(isset($_GET['export'])) {
+        $storage->export();
+    } else {
+        $allMovies = $movies->all();
+        $recommendedMovies = $movies->recommended();
+
+        view('home', compact('allMovies', 'recommendedMovies', 'watchList'));
+    }
+
 } else {
     if (isset($_POST['search'])) {
         echo $movies->search(trim($_POST['search']));
@@ -21,5 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         echo $movies->all(true);
     } else if(isset($_POST['filter'])) {
         echo $movies->filterByGenre(trim($_POST['filter']));
+    } else if(isset($_POST['update-watch-list'])) {
+        echo $movies->updateWatchList($storage, $_POST['update-watch-list']);
     }
 }

@@ -80,46 +80,107 @@
     </div>
     <div class="col-md-9">
         <div class="container">
+            <div class="text-center">
+                <a class="btn btn-primary" href="./index.php?export=1">Export As CSV</a>
+            </div>
+        </div>
+        <div class="container">
             <div class="col-md-2">
                 <h4>Monday</h4>
                 <ul id="sortable3" class="list-group droptrue" data-index="0">
+                    <?php if(isset($watchList[0]) and count($watchList[0]) > 0): ?>
+                        <?php foreach($watchList[0] as $movie): ?>
+                            <li class="list-group-item">
+                                <span id="title"><?php echo $movie ?></span>
+                            </li>
+                        <?php endforeach;?>
+                    <?php else: ?>
                     <li class="list-group-item"></li>
+                    <?php endif; ?>
                 </ul>
             </div>
             <div class="col-md-1">
                 <h4>Tuesday</h4>
                 <ul id="sortable3" class="list-group droptrue" data-index="1">
-                    <li class="list-group-item"></li>
+                    <?php if(isset($watchList[1]) and count($watchList[1]) > 0): ?>
+                        <?php foreach($watchList[1] as $movie): ?>
+                            <li class="list-group-item">
+                                <span id="title"><?php echo $movie ?></span>
+                            </li>
+                        <?php endforeach;?>
+                    <?php else: ?>
+                        <li class="list-group-item"></li>
+                    <?php endif; ?>
                 </ul>
             </div>
             <div class="col-md-2">
                 <h4>Wednesday</h4>
                 <ul id="sortable3" class="list-group droptrue" data-index="2">
-                    <li class="list-group-item"></li>
+                    <?php if(isset($watchList[2]) and count($watchList[2]) > 0): ?>
+                        <?php foreach($watchList[2] as $movie): ?>
+                            <li class="list-group-item">
+                                <span id="title"><?php echo $movie ?></span>
+                            </li>
+                        <?php endforeach;?>
+                    <?php else: ?>
+                        <li class="list-group-item"></li>
+                    <?php endif; ?>
                 </ul>
             </div>
             <div class="col-md-1">
                 <h4>Thursday</h4>
                 <ul id="sortable3" class="list-group droptrue" data-index="3">
-                    <li class="list-group-item"></li>
+                    <?php if(isset($watchList[3]) and count($watchList[3]) > 0): ?>
+                        <?php foreach($watchList[3] as $movie): ?>
+                            <li class="list-group-item">
+                                <span id="title"><?php echo $movie ?></span>
+                            </li>
+                        <?php endforeach;?>
+                    <?php else: ?>
+                        <li class="list-group-item"></li>
+                    <?php endif; ?>
                 </ul>
             </div>
             <div class="col-md-2">
                 <h4>Friday</h4>
                 <ul id="sortable3" class="list-group droptrue" data-index="4">
-                    <li class="list-group-item"></li>
+                    <?php if(isset($watchList[4]) and count($watchList[4]) > 0): ?>
+                        <?php foreach($watchList[4] as $movie): ?>
+                            <li class="list-group-item">
+                                <span id="title"><?php echo $movie ?></span>
+                            </li>
+                        <?php endforeach;?>
+                    <?php else: ?>
+                        <li class="list-group-item"></li>
+                    <?php endif; ?>
                 </ul>
             </div>
             <div class="col-md-1">
                 <h4>Saturday</h4>
                 <ul id="sortable3" class="list-group droptrue" data-index="5">
-                    <li class="list-group-item"></li>
+                    <?php if(isset($watchList[5]) and count($watchList[5]) > 0): ?>
+                        <?php foreach($watchList[5] as $movie): ?>
+                            <li class="list-group-item">
+                                <span id="title"><?php echo $movie ?></span>
+                            </li>
+                        <?php endforeach;?>
+                    <?php else: ?>
+                        <li class="list-group-item"></li>
+                    <?php endif; ?>
                 </ul>
             </div>
             <div class="col-md-1">
                 <h4>Sunday</h4>
                 <ul id="sortable3" class="list-group droptrue" data-index="6">
-                    <li class="list-group-item"></li>
+                    <?php if(isset($watchList[6]) and count($watchList[6]) > 0): ?>
+                        <?php foreach($watchList[6] as $movie): ?>
+                            <li class="list-group-item">
+                                <span id="title"><?php echo $movie ?></span>
+                            </li>
+                        <?php endforeach;?>
+                    <?php else: ?>
+                        <li class="list-group-item"></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

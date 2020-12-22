@@ -8,6 +8,7 @@ use App\Core\StorageDriver;
 
 class Cookie implements StorageDriver
 {
+    const STORE_KEY = 'watchList';
 
     public function add($name, $value)
     {
@@ -26,5 +27,10 @@ class Cookie implements StorageDriver
         foreach($_COOKIE as $key => $value) {
             $this->remove($key);
         }
+    }
+
+    public function retrieveAll()
+    {
+        return $_COOKIE[self::STORE_KEY];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Data;
 
+use App\Core\Storage;
+
 class Movies
 {
 
@@ -63,6 +65,12 @@ class Movies
         }, ARRAY_FILTER_USE_KEY);
 
         return $this->format($data)->json();
+    }
+
+    public function updateWatchList(Storage $storage, $data)
+    {
+        $storage->add('watchList', json_encode($data));
+        return true;
     }
 
     private function format($array)

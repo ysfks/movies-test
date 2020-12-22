@@ -2,7 +2,7 @@ $( function() {
     $( "ul.droptrue" ).sortable({
         connectWith: "ul",
         stop: function (event, ui) {
-            test();
+            updateDailyWatchList();
         }
     });
 
@@ -15,7 +15,7 @@ $( function() {
     });
 } );
 
-function test() {
+function updateDailyWatchList() {
     let ul = $('ul#sortable3');
     let dailyList = [];
     ul.each((i) => {
@@ -32,7 +32,9 @@ function test() {
         dailyList[dayIndex] = movies;
     });
 
-    console.log(dailyList);
+    $.post('index.php', {
+        'update-watch-list' : dailyList
+    },() => {}, 'json')
 }
 
 function search(el) {

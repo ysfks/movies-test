@@ -8,6 +8,7 @@ use App\Core\StorageDriver;
 
 class Session implements StorageDriver
 {
+    const STORE_KEY = 'watchList';
 
     public function add($name, $value)
     {
@@ -26,5 +27,10 @@ class Session implements StorageDriver
         foreach($_SESSION as $session) {
             $this->remove($session);
         }
+    }
+
+    public function retrieveAll()
+    {
+        return $_SESSION[self::STORE_KEY];
     }
 }
