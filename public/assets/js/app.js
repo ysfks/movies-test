@@ -8,6 +8,10 @@ $( function() {
 
     $( "#sortable1, #sortable2, #sortable3" ).disableSelection();
 
+    initTooltip();
+} );
+
+function initTooltip() {
     $('a[data-toggle="tooltip"]').each((i) => {
         let tooltip = $('a[data-toggle="tooltip"]')[i];
         $(tooltip).tooltip({
@@ -17,7 +21,7 @@ $( function() {
             content: $(tooltip).attr('title')
         });
     });
-} );
+}
 
 function updateDailyWatchList() {
     let ul = $('ul#sortable3');
@@ -79,7 +83,13 @@ function listRender(data) {
     let ul = $('div#all').find('ul');
     ul.empty();
     for(d in data) {
-        console.log(d);
-        ul.append('<li class="list-group-item"><span id="title">'+ data[d]['title'] +'</span> ('+ data[d]['imdbRating'] +' <i class="glyphicon glyphicon-star-empty"></i>)</li>');
+        ul.append('<li class="list-group-item">' +
+            '<a data-toggle="tooltip" title=\'<img src="' + data[d]['posterUrl'] + '" />\'>' +
+            '<span id="title">'+ data[d]['title'] +'</span>' +
+            '('+ data[d]['imdbRating'] +' <i class="glyphicon glyphicon-star-empty"></i>)' +
+            '</a>' +
+            '</li>');
     }
+
+    initTooltip();
 }
