@@ -8,10 +8,14 @@ $( function() {
 
     $( "#sortable1, #sortable2, #sortable3" ).disableSelection();
 
-    $('a[data-toggle="tooltip"]').tooltip({
-        animated: 'fade',
-        placement: 'top',
-        html: true
+    $('a[data-toggle="tooltip"]').each((i) => {
+        let tooltip = $('a[data-toggle="tooltip"]')[i];
+        $(tooltip).tooltip({
+            animated: 'fade',
+            placement: 'top',
+            html: true,
+            content: $(tooltip).attr('title')
+        });
     });
 } );
 
