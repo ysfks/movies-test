@@ -43,12 +43,16 @@ class Storage
 
     private static function getStorageDriver()
     {
-        if ($_ENV['STORAGE'] === 'cookie') {
-            return new Cookie();
-        } else if ($_ENV['STORAGE'] === 'session') {
-            return new Session();
-        } else {
-            throw new Exception('Undefined Storage Driver');
+        switch ($_ENV['STORAGE']) {
+            case 'cookie':
+                return new Cookie();
+                break;
+            case 'session':
+                return new Session();
+                break;
+            default:
+                return new Cookie();
+                break;
         }
     }
 
