@@ -1,2 +1,5 @@
 .idea/
 vendor/
+node_modules/
+public/mix-manifest.json
+mix-manifest.json
